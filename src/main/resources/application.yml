@@ -1,0 +1,27 @@
+server:
+    port: 9090
+
+spring:
+  jpa:
+    database: 'MYSQL'
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: none
+      jdbc:
+        lob:
+          non_contextual_creation: true
+  datasource:
+    platform: 'mysql'
+    url: 'jdbc:mysql://localhost:3306/psw'
+    username: 'root'
+    password: 'password'
+    
+keycloak: 
+    auth-server-url : http://localhost:8080/auth
+    realm : SpringBootKeycloak
+    resource : login-app
+    public-client: true
+   # use-resource-role-mappings : true
+    enabled : true
+    ssl-required: external
