@@ -31,25 +31,22 @@ import javax.validation.Valid;
 public class Controller {
 	private Map<Long, Book> books = new HashMap<>();
 	
-	@GetMapping("stocazzo")
-	public ResponseEntity st() {
-		return new ResponseEntity<>(new ResponseMessage("OK SONO EBREO"), HttpStatus.OK);
-	}
-	
-	/*
-	@PostMapping("book/add")
-	public ResponseEntity stocazzo(@RequestBody @Valid Book b) {
-		
-	}
-	*/
-	
-	@PutMapping("stocazzo/{id}")
-	public ResponseEntity stocazzo(@PathVariable int id) {
-		System.out.println("Arrivata "+id);
-		return new ResponseEntity<>(new ResponseMessage("OK SONO EBREO"), HttpStatus.OK);
-	}
 	@GetMapping("/book")
 	public List<Book> books() {
 		return new LinkedList<>(books.values());
 	}
+	
+	@PostMapping("book/add")
+	public ResponseEntity stocazzo(@RequestBody @Valid Book b) {
+		if ( books.containsKey(b.getId()))
+			return new ResponseEntity<>(new ResponseMessage("Error Book already present"), HttpStatus.CONFLICT);
+		books.put(b.getId(), b);
+		return new ResponseEntity<>(b, HttpStatus.OK);
+	}
+	
+	@GetMapping("book/{id}")
+	public Book getBook(@PathVariable long id) {
+		return books.get(id);
+	}
+	
 }
