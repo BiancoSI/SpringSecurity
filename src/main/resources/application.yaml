@@ -15,7 +15,7 @@ spring:
     platform: 'mysql'
     url: 'jdbc:mysql://localhost:3306/psw'
     username: 'root'
-    password: 'password'
+    password: 'BSDI2022furfaro'
     
 keycloak: 
     auth-server-url : http://localhost:8080/auth
