@@ -40,7 +40,7 @@ public class JwtValidator {
      * @param token
      * @return decoded token
      */
-    public DecodedJWT validate(String token) {
+    public DecodedJWT validate(String token) throws InvalidParameterException{
         try {
             final DecodedJWT jwt = JWT.decode(token);
 
